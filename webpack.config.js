@@ -1,26 +1,10 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { VueLoaderPlugin } from 'vue-loader';
 
 
 
-
-export default async () => {
-let response = await fetch('https://rickandmortyapi.com/api/character');
-let json = await response.json();
-let characters = json.results;
-let pages = [];
-characters.forEach(character => {
-  let page = new HtmlWebpackPlugin({
-    template: './src/character.njk',
-    filename: 'character_' + character.id + '.html', 
-    templateParameters: {
-      character
-    },
-  });
-  pages.push(page);
-});
-
-  return {
+export default {
   entry: './src/index.js',
   output: {
     filename: 'main.js',
@@ -54,29 +38,15 @@ characters.forEach(character => {
         ],
       },
       {
-        test: /\.njk$/,
-        use: [
-            {
-                loader: 'simple-nunjucks-loader',
-                options: {}
-            }
-        ]
-    }
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.njk',
-      templateParameters: {
-        name: 'Nikita',
-        characters, //characters: characters
-      },
+      template: './src/index.html',
     }),
-    new HtmlWebpackPlugin({
-      filename: 'about.html',
-      template: './src/about.njk',
-    }),
-    ...pages
-  ],
-};
+    new VueLoaderPlugin()
+    ],
 };
