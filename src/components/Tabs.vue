@@ -7,7 +7,7 @@ import { ref } from 'vue';
  
 function setActive(key){
     active.value=key;
-    emit('change', key);
+    emit('change', key)
 }
 
 </script>
