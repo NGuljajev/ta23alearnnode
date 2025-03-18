@@ -56,7 +56,7 @@ async function search(){
 
 onMounted(() => {
     document.addEventListener('scroll', () => {
-           if(window.scrollY + window.innerHeight === document.documentElement.scrollHeight){
+           if(window.scrollY + window.innerHeight > document.documentElement.scrollHeight -300){
                next();
     }
 })
