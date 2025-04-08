@@ -69,7 +69,7 @@ onMounted(() => {
 <template>
     <div class="field has-addons">
   <div class="control is-expanded">
-    <input @input="search" v-model="searchValue" class="input" type="text" placeholder="Find a repository">
+    <input @input="search" v-model="searchValue" class="input" type="text" placeholder="Find a character">
   </div>
   <div class="control">
     <button @click= "search" class="button is-info">
