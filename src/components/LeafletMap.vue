@@ -18,7 +18,25 @@ onMounted(() => {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
     var marker = L.marker([59.4269, 24.7435]).addTo(map);
+    var houseMarker = L.marker([59.43020351222699, 24.4566105274667]).addTo(map);
+
+    var housePolygon = L.polygon([
+        [59.43030351222699, 24.4565105274667], 
+        [59.43030351222699, 24.4567105274667],
+        [59.43010351222699, 24.4567105274667], 
+        [59.43010351222699, 24.4565105274667]  
+    ], {color: 'red'}).addTo(map);
+    housePolygon.bindPopup("Around my house");
+
+    var polygon = L.polygon([
+        [59.4270, 24.7430],
+        [59.4275, 24.7440],
+        [59.4265, 24.7445],
+        [59.4260, 24.7435]
+    ], {color: 'blue'}).addTo(map);
+    polygon.bindPopup("Umber area");
 });
+
  
 watch(() => center, (center, oldCenter) => {
     console.log(center, oldCenter);
@@ -41,4 +59,3 @@ div {
     height: 90vh;
 }
 </style>
- 
